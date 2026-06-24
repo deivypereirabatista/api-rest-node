@@ -29,7 +29,6 @@ app.get("/selecoes", (req, res) => {
 })
 
 app.get("/selecoes/:id", (req, res) => {
-    
     res.json(buscarSelecaoPorId(req.params.id))
 })
 
