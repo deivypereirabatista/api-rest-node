@@ -1,21 +1,12 @@
 import express, { json } from "express"
+import conexao from '../infra/conexao.js'
 
 const app = express()
 
 app.use(express.json()) //Indicar para express ler body com json
 
-// mock
-const selecoes = [
-    {id:1, selecao: 'Brasil', grupo: 'G'},
-    {id:2, selecao: 'Suiça', grupo: 'G'},
-    {id:3, selecao: 'Camarões', grupo: 'G'},
-    {id:4, selecao: 'Servia', grupo: 'G'}
-    
-]
 
-
-//Funçoes
-
+//FUNÇÕES
 //Retornar o objeto por ID
 function buscarSelecaoPorId(id){
     return selecoes.filter(selecao => selecao.id == id)
@@ -26,18 +17,35 @@ function buscarIndexSelecao(id){
     return selecoes.findIndex(selecao => selecao.id ==id)
 }
 
-
-// Rota padrão/raiz
-app.get("/", (req, res) =>{
-    res.send("Olá, Mundo!")
-})
+//ROTAS
 
 app.get("/selecoes", (req, res) => {
-    res.status(200).send(selecoes)
+    //res.status(200).send(selecoes)
+
+    const sql = "SELECT * FROM selecoes"
+    conexao.query(sql, (error, result) => {
+        if(error){
+            console.log(error)
+            res.status(404).json({'erro': error})
+        }else{
+            res.status(200).json(result)
+        }
+    })
 })
 
 app.get("/selecoes/:id", (req, res) => {
-    res.json(buscarSelecaoPorId(req.params.id))
+    //res.json(buscarSelecaoPorId(req.params.id))
+    const id = req.params.id
+    const sql = "SELECT * FROM selecoes WHERE id=?"
+    conexao.query(sql, id, (error, result) => {
+        const linha = result[0]
+        if(error){
+            console.log(error)
+            res.status(404).json({'erro': error})
+        }else{
+            res.status(200).json(linha)
+        }
+    })
 })
 
 app.post("/selecoes", (req, res) => {
