@@ -49,8 +49,19 @@ app.get("/selecoes/:id", (req, res) => {
 })
 
 app.post("/selecoes", (req, res) => {
-    selecoes.push(req.body)
-    res.status(201).send('Seleção cadastrada com sucesso.')
+    //selecoes.push(req.body)
+   //res.status(201).send('Seleção cadastrada com sucesso.')
+
+   const selecao = req.body
+    const sql = "INSERT INTO selecoes SET ? "
+    conexao.query(sql, selecao, (error, result) => {
+        if(error){
+            console.log(error)
+            res.status(400).json({'erro': error})
+        }else{
+            res.status(201).json(result)
+        }
+    })
 })
 
 app.delete("/selecoes/:id", (req, res) => {
