@@ -8,13 +8,9 @@ app.use(express.json()) //Indicar para express ler body com json
 
 //ROTAS
 app.get("/selecoes", SelecaoController.index)
-
 app.get("/selecoes/:id", SelecaoController.show)
-
 app.post("/selecoes", SelecaoController.store)
-
-app.delete("/selecoes/:id", SelecaoController.delete)
-
 app.put('/selecoes/:id', SelecaoController.update)
+app.delete("/selecoes/:id", SelecaoController.delete)
 
 export default app

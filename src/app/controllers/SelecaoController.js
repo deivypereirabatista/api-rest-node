@@ -1,3 +1,5 @@
+import conexao from "../database/conexao.js"
+
 class SelecaoController {
 
     index(req, res){
