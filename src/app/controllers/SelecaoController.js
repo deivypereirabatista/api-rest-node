@@ -1,4 +1,3 @@
-import conexao from "../database/conexao.js"
 import SelecaoRepository from "../repositories/SelecaoRepository.js"
 
 class SelecaoController {
@@ -23,6 +22,7 @@ class SelecaoController {
         res.json(row)
     }
 
+    //Atualizar
     async update(req, res){
         const id = req.params.id
         const selecao = req.body
@@ -30,6 +30,7 @@ class SelecaoController {
         res.json(row)
     }
 
+    //Deletar
     async delete(req, res){
         const id = req.params.id
         const row = await SelecaoRepository.delete(id)
