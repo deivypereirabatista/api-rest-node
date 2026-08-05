@@ -11,7 +11,7 @@ const app = express()
 app.engine(
     "handlebars",
     engine({
-        defaultLayout: false
+        defaultLayout: "main"
     })
 )
 

@@ -10,4 +10,16 @@ router.post("/selecoes", SelecaoController.store)
 router.put('/selecoes/:id', SelecaoController.update)
 router.delete("/selecoes/:id", SelecaoController.delete)
 
+router.get("/", (req, res) =>{
+    res.render("home", {
+        title: "Página Inicial",
+        nome: "Deivy",
+
+        usuario: {
+            nome: "Deivy"
+        }
+    })
+})
+
+
 export default router
