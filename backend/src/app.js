@@ -22,7 +22,7 @@ app.set("view engine", "handlebars")
 //Informar onde as pastas estão
 app.set(
     "views",
-    path.resolve("frontend/views")
+    path.resolve("views")
 )
 
 app.use(express.json()) //Indicar para express ler body com json
