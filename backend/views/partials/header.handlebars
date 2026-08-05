@@ -5,5 +5,11 @@
         <a href="/">Inicio</a>
     </nav>
 
-    <p>Olá, {{usuario.nome}}</p>
+    
+    {{#if usuario}}
+        <p>Olá, {{usuario.nome}}</p>
+
+    {{else}}
+        <a href="/login">Entrar</a>
+    {{/if}}
 </header>

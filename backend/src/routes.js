@@ -13,12 +13,13 @@ router.delete("/selecoes/:id", SelecaoController.delete)
 router.get("/", (req, res) =>{
     res.render("home", {
         title: "Página Inicial",
-        nome: "Deivy",
 
-        usuario: {
-            nome: "Deivy"
-        }
-    })
+        produtos: [
+            { nome: "Notebook" },
+            { nome: "Monitor" },
+            { nome: "Teclado" }
+        ]
+    })  
 })
 
 
